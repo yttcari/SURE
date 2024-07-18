@@ -72817,4 +72817,214 @@ FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
 FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
 FOVx, FOVy: 50 50 [muas]
 Resolution: 200x200
-0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 
+scale = 1.469024e-01
+imax=92 jmax=101 Imax=0.0011899 Iavg=1.62748e-05
+freq: 2.3e+11 Ftot: 0.0956322 Jy (0.100328 Jy unpol xfer) scale=0.146902
+nuLnu = 5.15821e+39 erg/s
+I,Q,U,V [Jy]: 0.0956322 -0.00224413 0.000839623 0.000542661
+LP,CP [%]: 2.50549 0.567445
+Total wallclock time: 96.6447 s (1.05592 s)
+
+ipole-beta-1.5. githash: b60a7e2-dirty
+notes: 
+
+nthreads = 16
+Determining dump file type... iharm!
+Reading data header...
+filename: /xdisk/rtilanus/proj/eht/GRMHD_kharma-v3/Sa+0.94_w5/torus.out0.05734.h5
+Using SPO2023 with qshear = 1.7265, nR = 1.9998, and beta_crit = 5
+sigma_cut = 1
+Using Funky Modified Kerr-Schild coordinates FMKS
+MKS parameters a: 0.937500 hslope: 0.300000 Rin: 1.185231 Rout: 1000.000000
+MKS parameters poly_xt: 0.820000 poly_alpha: 14.000000 mks_smooth: 0.500000 poly_norm: 0.757817
+Native coordinate start: 0 0 0 stop: 6.90776 1 6.28319
+Grid start: 0.169937 0 0 stop: 6.90776 1 6.28319
+MBH: 7.94328e+08 [Msun]
+L,T,M units: 1.17326e+14 [cm] 3913.56 [s] 5.57759e+25 [g]
+rho,u,B units: 3.45357e-17 [g cm^-3] 31039.2 [g cm^-1 s^-2] 624.54 [G] 
+Reading data...
+dMact: -0.173096 [code]
+Ladv: 0.0224877 [code]
+Mdot: 2.46695e+21 [g/s] 
+Mdot: 3.91141e-05 [MSUN/YR] 
+Mdot: 2.21984e-06 [Mdotedd]
+Mdotedd: 1.11132e+27 [g/s]
+Mdotedd: 17.6202 [MSUN/YR]
+Xcam[] = 0.000000e+00 6.907755e+00 9.369831e-01 0.000000e+00
+intensity [cgs] to flux per pixel [Jy] conversion: 0.146902
+Dsource: 4.31995e+25 [cm]
+Dsource: 14000 [kpc]
+FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
+FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
+FOVx, FOVy: 50 50 [muas]
+Resolution: 200x200
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 
+scale = 1.469024e-01
+imax=93 jmax=102 Imax=0.00119282 Iavg=1.6122e-05
+freq: 2.3e+11 Ftot: 0.0947345 Jy (0.0998301 Jy unpol xfer) scale=0.146902
+nuLnu = 5.10979e+39 erg/s
+I,Q,U,V [Jy]: 0.0947345 -0.00222972 0.000976594 0.000492307
+LP,CP [%]: 2.56951 0.51967
+Total wallclock time: 96.0371 s (1.02818 s)
+
+ipole-beta-1.5. githash: b60a7e2-dirty
+notes: 
+
+nthreads = 16
+Determining dump file type... iharm!
+Reading data header...
+filename: /xdisk/rtilanus/proj/eht/GRMHD_kharma-v3/Sa+0.94_w5/torus.out0.05735.h5
+Using SPO2023 with qshear = 1.7265, nR = 1.9998, and beta_crit = 5
+sigma_cut = 1
+Using Funky Modified Kerr-Schild coordinates FMKS
+MKS parameters a: 0.937500 hslope: 0.300000 Rin: 1.185231 Rout: 1000.000000
+MKS parameters poly_xt: 0.820000 poly_alpha: 14.000000 mks_smooth: 0.500000 poly_norm: 0.757817
+Native coordinate start: 0 0 0 stop: 6.90776 1 6.28319
+Grid start: 0.169937 0 0 stop: 6.90776 1 6.28319
+MBH: 7.94328e+08 [Msun]
+L,T,M units: 1.17326e+14 [cm] 3913.56 [s] 5.57759e+25 [g]
+rho,u,B units: 3.45357e-17 [g cm^-3] 31039.2 [g cm^-1 s^-2] 624.54 [G] 
+Reading data...
+dMact: -0.164516 [code]
+Ladv: 0.0208957 [code]
+Mdot: 2.34468e+21 [g/s] 
+Mdot: 3.71754e-05 [MSUN/YR] 
+Mdot: 2.10982e-06 [Mdotedd]
+Mdotedd: 1.11132e+27 [g/s]
+Mdotedd: 17.6202 [MSUN/YR]
+Xcam[] = 0.000000e+00 6.907755e+00 9.369831e-01 0.000000e+00
+intensity [cgs] to flux per pixel [Jy] conversion: 0.146902
+Dsource: 4.31995e+25 [cm]
+Dsource: 14000 [kpc]
+FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
+FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
+FOVx, FOVy: 50 50 [muas]
+Resolution: 200x200
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 
+scale = 1.469024e-01
+imax=90 jmax=96 Imax=0.00121841 Iavg=1.62167e-05
+freq: 2.3e+11 Ftot: 0.0952909 Jy (0.100515 Jy unpol xfer) scale=0.146902
+nuLnu = 5.1398e+39 erg/s
+I,Q,U,V [Jy]: 0.0952909 -0.00196956 0.00173209 0.000955963
+LP,CP [%]: 2.75246 1.00321
+Total wallclock time: 96.0039 s (1.05423 s)
+
+ipole-beta-1.5. githash: b60a7e2-dirty
+notes: 
+
+nthreads = 16
+Determining dump file type... iharm!
+Reading data header...
+filename: /xdisk/rtilanus/proj/eht/GRMHD_kharma-v3/Sa+0.94_w5/torus.out0.05736.h5
+Using SPO2023 with qshear = 1.7265, nR = 1.9998, and beta_crit = 5
+sigma_cut = 1
+Using Funky Modified Kerr-Schild coordinates FMKS
+MKS parameters a: 0.937500 hslope: 0.300000 Rin: 1.185231 Rout: 1000.000000
+MKS parameters poly_xt: 0.820000 poly_alpha: 14.000000 mks_smooth: 0.500000 poly_norm: 0.757817
+Native coordinate start: 0 0 0 stop: 6.90776 1 6.28319
+Grid start: 0.169937 0 0 stop: 6.90776 1 6.28319
+MBH: 7.94328e+08 [Msun]
+L,T,M units: 1.17326e+14 [cm] 3913.56 [s] 5.57759e+25 [g]
+rho,u,B units: 3.45357e-17 [g cm^-3] 31039.2 [g cm^-1 s^-2] 624.54 [G] 
+Reading data...
+dMact: -0.163755 [code]
+Ladv: 0.0207815 [code]
+Mdot: 2.33383e+21 [g/s] 
+Mdot: 3.70033e-05 [MSUN/YR] 
+Mdot: 2.10005e-06 [Mdotedd]
+Mdotedd: 1.11132e+27 [g/s]
+Mdotedd: 17.6202 [MSUN/YR]
+Xcam[] = 0.000000e+00 6.907755e+00 9.369831e-01 0.000000e+00
+intensity [cgs] to flux per pixel [Jy] conversion: 0.146902
+Dsource: 4.31995e+25 [cm]
+Dsource: 14000 [kpc]
+FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
+FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
+FOVx, FOVy: 50 50 [muas]
+Resolution: 200x200
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 
+scale = 1.469024e-01
+imax=93 jmax=100 Imax=0.00110741 Iavg=1.62497e-05
+freq: 2.3e+11 Ftot: 0.095485 Jy (0.100504 Jy unpol xfer) scale=0.146902
+nuLnu = 5.15027e+39 erg/s
+I,Q,U,V [Jy]: 0.095485 -0.00238818 0.00101318 0.000271111
+LP,CP [%]: 2.71688 0.283931
+Total wallclock time: 96.1781 s (1.04191 s)
+
+ipole-beta-1.5. githash: b60a7e2-dirty
+notes: 
+
+nthreads = 16
+Determining dump file type... iharm!
+Reading data header...
+filename: /xdisk/rtilanus/proj/eht/GRMHD_kharma-v3/Sa+0.94_w5/torus.out0.05737.h5
+Using SPO2023 with qshear = 1.7265, nR = 1.9998, and beta_crit = 5
+sigma_cut = 1
+Using Funky Modified Kerr-Schild coordinates FMKS
+MKS parameters a: 0.937500 hslope: 0.300000 Rin: 1.185231 Rout: 1000.000000
+MKS parameters poly_xt: 0.820000 poly_alpha: 14.000000 mks_smooth: 0.500000 poly_norm: 0.757817
+Native coordinate start: 0 0 0 stop: 6.90776 1 6.28319
+Grid start: 0.169937 0 0 stop: 6.90776 1 6.28319
+MBH: 7.94328e+08 [Msun]
+L,T,M units: 1.17326e+14 [cm] 3913.56 [s] 5.57759e+25 [g]
+rho,u,B units: 3.45357e-17 [g cm^-3] 31039.2 [g cm^-1 s^-2] 624.54 [G] 
+Reading data...
+dMact: -0.171288 [code]
+Ladv: 0.0222057 [code]
+Mdot: 2.4412e+21 [g/s] 
+Mdot: 3.87057e-05 [MSUN/YR] 
+Mdot: 2.19667e-06 [Mdotedd]
+Mdotedd: 1.11132e+27 [g/s]
+Mdotedd: 17.6202 [MSUN/YR]
+Xcam[] = 0.000000e+00 6.907755e+00 9.369831e-01 0.000000e+00
+intensity [cgs] to flux per pixel [Jy] conversion: 0.146902
+Dsource: 4.31995e+25 [cm]
+Dsource: 14000 [kpc]
+FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
+FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
+FOVx, FOVy: 50 50 [muas]
+Resolution: 200x200
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 
+scale = 1.469024e-01
+imax=90 jmax=95 Imax=0.0012633 Iavg=1.63702e-05
+freq: 2.3e+11 Ftot: 0.096193 Jy (0.101139 Jy unpol xfer) scale=0.146902
+nuLnu = 5.18846e+39 erg/s
+I,Q,U,V [Jy]: 0.096193 -0.00153817 0.00164291 0.000157648
+LP,CP [%]: 2.33965 0.163888
+Total wallclock time: 96.0441 s (1.04564 s)
+
+ipole-beta-1.5. githash: b60a7e2-dirty
+notes: 
+
+nthreads = 16
+Determining dump file type... iharm!
+Reading data header...
+filename: /xdisk/rtilanus/proj/eht/GRMHD_kharma-v3/Sa+0.94_w5/torus.out0.05738.h5
+Using SPO2023 with qshear = 1.7265, nR = 1.9998, and beta_crit = 5
+sigma_cut = 1
+Using Funky Modified Kerr-Schild coordinates FMKS
+MKS parameters a: 0.937500 hslope: 0.300000 Rin: 1.185231 Rout: 1000.000000
+MKS parameters poly_xt: 0.820000 poly_alpha: 14.000000 mks_smooth: 0.500000 poly_norm: 0.757817
+Native coordinate start: 0 0 0 stop: 6.90776 1 6.28319
+Grid start: 0.169937 0 0 stop: 6.90776 1 6.28319
+MBH: 7.94328e+08 [Msun]
+L,T,M units: 1.17326e+14 [cm] 3913.56 [s] 5.57759e+25 [g]
+rho,u,B units: 3.45357e-17 [g cm^-3] 31039.2 [g cm^-1 s^-2] 624.54 [G] 
+Reading data...
+dMact: -0.177618 [code]
+Ladv: 0.0234352 [code]
+Mdot: 2.5314e+21 [g/s] 
+Mdot: 4.01359e-05 [MSUN/YR] 
+Mdot: 2.27784e-06 [Mdotedd]
+Mdotedd: 1.11132e+27 [g/s]
+Mdotedd: 17.6202 [MSUN/YR]
+Xcam[] = 0.000000e+00 6.907755e+00 9.369831e-01 0.000000e+00
+intensity [cgs] to flux per pixel [Jy] conversion: 0.146902
+Dsource: 4.31995e+25 [cm]
+Dsource: 14000 [kpc]
+FOVx, FOVy: 89.2546 89.2546 [GM/c^2]
+FOVx, FOVy: 2.42407e-10 2.42407e-10 [rad]
+FOVx, FOVy: 50 50 [muas]
+Resolution: 200x200
+0 1 2 3 4 5 
