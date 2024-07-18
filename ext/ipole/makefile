@@ -2,25 +2,24 @@
 MODEL = iharm
 
 # Top directory of HDF5, or blank if using h5pcc
-HDF5_DIR = /opt/homebrew/Cellar/hdf5/1.14.3_1
+HDF5_DIR = /opt/ohpc/pub/libs/gnu8/hdf5/1.10.5
 # Top directory of GSL, or blank if installed to system
-GSL_DIR = /opt/homebrew/Cellar/gsl/2.8
+GSL_DIR = /opt/ohpc/pub/libs/gnu8/gsl/2.6
 # System /lib equivalent (can be /usr/lib, /lib64, /usr/lib64)
 # Can leave this blank if it's included automatically by GCC
 SYSTEM_LIBDIR = /lib64
 
 # Try pointing this to h5pcc or h5cc on your machine, before hunting down libraries
-CC=/opt/homebrew/opt/hdf5/bin/h5cc
+CC=/opt/ohpc/pub/libs/gnu8/hdf5/1.10.5/bin/h5cc
 # Example CFLAGS for going fast with GCC
-CFLAGS = -std=gnu99 -O3 -march=native -mtune=native -flto -I/opt/homebrew/Cellar/libomp/18.1.8/include -Xpreprocessor -fopenmp -funroll-loops 
-#CFLAGS = -std=gnu99 -O3 -march=native -mtune=native -flto -funroll-loops
+CFLAGS = -std=gnu99 -O3 -march=native -mtune=native -flto -fopenmp -funroll-loops
 MATH_LIB = -lm
 # ICC does not like -lm and uses different flags
 #CFLAGS = -xCORE-AVX2 -Ofast -fstrict-aliasing -Wall -Werror -ipo -qopenmp
 #MATH_LIB =
 
 # Name of the executable
-EXE = beta-ipole
+EXE = ipole
 
 # Executables which apparently aren't standard
 MD5=md5sum
@@ -28,10 +27,10 @@ ECHO=echo -e
 
 # Overrides of the above for macOS
 ifneq (,$(findstring Darwin,$(shell uname)))
-	export HDF5_CC = /opt/homebrew/opt/llvm/bin/clang
-	export HDF5_CLINKER = /opt/homebrew/opt/llvm/bin/clang
+	export HDF5_CC = /usr/local/opt/llvm/bin/clang
+	export HDF5_CLINKER = /usr/local/opt/llvm/bin/clang
 
-	GSL_DIR=/opt/homebrew/Cellar/gsl/2.8
+	GSL_DIR=/usr/local
 	SYSTEM_LIBDIR=
 
 	MD5=md5
@@ -64,7 +63,7 @@ GIT_VERSION := $(shell cd $(MAKEFILE_PATH); git describe --dirty --always --tags
 
 ## LINKING PARAMETERS ##
 LINK = $(CC)
-LDFLAGS = $(CFLAGS) -L/opt/homebrew/Cellar/libomp/18.1.8/lib
+LDFLAGS = $(CFLAGS)
 
 HDF5_LIB = -lhdf5_hl -lhdf5
 GSL_LIB = -lgsl -lgslcblas
@@ -135,12 +134,12 @@ $(EXE): $(ARC_DIR)/$(EXE)
 
 $(ARC_DIR)/$(EXE): $(OBJ)
 	@$(ECHO) "\tLinking $(EXE)"
-	@$(LINK) $(LDFLAGS) $(OBJ) $(LIBDIR) $(LIB) -lomp -o $(ARC_DIR)/$(EXE)
+	@$(LINK) $(LDFLAGS) $(OBJ) $(LIBDIR) $(LIB) -o $(ARC_DIR)/$(EXE)
 	@rm $(OBJ) # This ensures full recompile
 
 $(ARC_DIR)/%.o: $(ARC_DIR)/%.c $(HEAD_ARC)
-	@$(ECHO) "\tCompiling $(notdir $<)" 
-	@$(CC) $(CFLAGS) $(INC) -DVERSION=$(GIT_VERSION) -DNOTES=$(NOTES) -DMODEL=$(MODEL) -c $< -lomp -o $@
+	@$(ECHO) "\tCompiling $(notdir $<)"
+	@$(CC) $(CFLAGS) $(INC) -DVERSION=$(GIT_VERSION) -DNOTES=$(NOTES) -DMODEL=$(MODEL) -c $< -o $@
 
 $(ARC_DIR)/%: % | $(ARC_DIR)
 	@cp $< $(ARC_DIR)

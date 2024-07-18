@@ -1,3 +1,4 @@
 dump
 *.h5
 *.png
+*.out

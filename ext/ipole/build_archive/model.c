@@ -84,7 +84,7 @@ double tf;
 #define ELECTRON_SPO2023 (4) // use mixed TP_OVER_TE (Satapathy et al., 2023/2024)
 #define ELECTRON_KORAL (9) // load Te (in Kelvin) from dump file (KORAL etc.)
 
-static int RADIATION, ELECTRONS = ELECTRON_BETA;
+static int RADIATION, ELECTRONS = ELECTRON_SPO2023;
 static double gam = 1.444444, game = 1.333333, gamp = 1.666667;
 static double Thetae_unit, Mdotedd;
 
