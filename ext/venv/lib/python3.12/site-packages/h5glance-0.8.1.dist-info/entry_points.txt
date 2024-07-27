@@ -1,0 +1,4 @@
+[console_scripts]
+h5glance=h5glance.terminal:main
+h5glance-html=h5glance.html_cli:main
+

@@ -2,3 +2,5 @@ dump
 *.h5
 *.png
 *.out
+
+/proj/postprocessing/2017*
