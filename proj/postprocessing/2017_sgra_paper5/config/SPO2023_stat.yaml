@@ -1,0 +1,11 @@
+src_fmt:
+  cache/SPO2023/summ/NGC{NGC}_{aspin}_230.e9_{inc}.tsv
+dst_fmt:
+  cache/SPO2023/NGC/stat/NGC{NGC}_{freqs}_{type}.h5
+order:
+  - aspin
+  - inc
+freqs:
+  - '86.e9'
+  - '230.e9'
+  - '345.e9'

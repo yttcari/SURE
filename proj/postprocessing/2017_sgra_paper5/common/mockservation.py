@@ -182,6 +182,8 @@ def compress(imgs, N=None, cutoff=15e9):
     ])
 
     meta = copy(imgs.meta)
+    for k, v in meta.dict().items():
+        print(k, v)
     meta.width  = abs(W * meta.dist).to(meta.rg)
     meta.height = abs(H * meta.dist).to(meta.rg)
     return dalt.Image(I, meta=meta)

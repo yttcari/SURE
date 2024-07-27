@@ -90,7 +90,7 @@ def cache_avg(src_fmt, dst_fmt, img_fmt='ipole',
         # Only touch file system if everything works
         dst.parent.mkdir(parents=True, exist_ok=True)
         with h5py.File(dst, 'w') as f:
-            f['data'] = avg
+            f['data'] = np.mean(mov, axis=0) #MODIFIED: avg
             for k, v in avg.meta.dict().items():
                 f['meta/'+k] = v
 

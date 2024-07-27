@@ -91,7 +91,6 @@ def cache_gt(src_fmt, dst_fmt, img_fmt='ipole',
             for k, v in mov.meta.dict().items():
                 f['meta/'+k] = v
 
-
 #==============================================================================
 # Make cache_gt() callable as a script
 

@@ -94,5 +94,9 @@ def load_mov(fs, mean=False, **kwargs):
     if mean:
         import numpy as np
         imgs = np.mean(imgs, axis=0)
-
+    else:
+        import numpy as np
+        # This produce (1000, 200, 200, 1), which shouldn't (???)
+        # Squeeze the array to get (1000, 200, 200)
+        imgs = np.squeeze(imgs)
     return d.Image(imgs, meta=meta)

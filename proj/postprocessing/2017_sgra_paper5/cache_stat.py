@@ -77,11 +77,11 @@ def stat(vals):
     return dict(zip(stat_keys, [len(vals),m,s]+list(qs)))
 
 def cache_stat(src_fmt, dst_fmt, freqs,
-               params=None, order=['mag', 'aspin', 'Rhigh', 'inc'], **kwargs):
+               params=None, order=['m','aspin', 'Rhigh', 'inc'], **kwargs):
 
-    freq_out = ['86GHz', '230GHz', 'NIR', 'xray']
+    freq_out = ['86.e9', '230.e9', '345.e9']
     freq_map = dict(zip(freq_out, freqs))
-    freq_val = dict(zip(freq_out, [86e9, 230e9, 1.4141e+14, 1.45e18]))
+    freq_val = dict(zip(freq_out, [86e9, 230e9, 345.e9]))
 
     dlen = 0 # for pretty format in `tqdm`
 
@@ -96,8 +96,10 @@ def cache_stat(src_fmt, dst_fmt, freqs,
     # a dict of parameters and their unique values
     if params is None:
         params = list(pf.keys())
+        print(params)
         params.remove('path')
         for k in order:
+            print(k)
             params.remove(k)
     params = {p:np.unique(pf[p]) for p in params}
 
@@ -130,7 +132,6 @@ def cache_stat(src_fmt, dst_fmt, freqs,
         desc = f'* "{dst_generic}"'
         desc = f'{desc:<{dlen}}'
         dlen = len(desc)
-
         # Make sure that the summary table is sorted correctly
         sel = sel.sort_values(order)
 
@@ -141,7 +142,7 @@ def cache_stat(src_fmt, dst_fmt, freqs,
         }
 
         for i, row in tqdm(list(sel.iterrows()), desc=desc):
-            suffix = f"_{freq_map['230GHz']}.tsv"
+            suffix = f"_{freq_map['230.e9']}.tsv"
             path   = row['path']
             if path.endswith(suffix):
                 prefix = path[:-len(suffix)]
@@ -195,12 +196,15 @@ def cache_stat(src_fmt, dst_fmt, freqs,
                     continue
 
                 if t.startswith('log'):
-                    vals = np.log10(vals)
+                    try:
+                        vals = np.log10(vals)
+                    except:
+                        print(vals)
 
                 out = {k:row[k] for k in order}
                 out.update(stat(vals))
                 
-                tab[key] = tab[key].append(out, ignore_index=True)
+                tab[key] = pd.concat([tab[key], pd.DataFrame({'out':out})], ignore_index=True)
 
         # Only touch file system if everything works
         for f, t in product(freq_map, types):

@@ -24,13 +24,8 @@ from scipy.stats import norm, poisson
 
 def show(vs, s=None, f=None, ax=None, labels=True, **kwargs):
 
-    if vs.ndim != 2:
-        if s is None:
-            raise ValueError('must specify snapshot number for movie')
-        v = vs[s,:,:]
-    else:
-        v = vs
-
+    v = vs[:,:,0]
+    
     if f is None:
         f = lambda x: x
 
@@ -144,7 +139,6 @@ def grid(pf, plot,
          legend = None,
          **kwargs):
 
-
     keys   = list(kwargs.keys())
     colkey = keys[0]
     cols   = kwargs.pop(keys[0])
@@ -162,7 +156,6 @@ def grid(pf, plot,
 
     for i, c in enumerate(cols):
         for j, r in enumerate(rows):
-
             plot(axes[j][i], pf(**{colkey:c})(**{rowkey:r}))
 
             if i == 0:
