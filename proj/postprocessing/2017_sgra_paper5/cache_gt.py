@@ -89,6 +89,7 @@ def cache_gt(src_fmt, dst_fmt, img_fmt='ipole',
         with h5py.File(dst, 'w') as f:
             f['data'] = mov
             for k, v in mov.meta.dict().items():
+
                 f['meta/'+k] = v
 
 #==============================================================================

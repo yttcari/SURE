@@ -2,3 +2,7 @@ dump
 *.h5
 *.png
 *.out
+ext/venv
+*.tsv
+*.pdf
+*.mp4

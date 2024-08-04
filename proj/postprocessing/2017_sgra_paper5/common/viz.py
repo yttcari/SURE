@@ -24,15 +24,20 @@ from scipy.stats import norm, poisson
 
 def show(vs, s=None, f=None, ax=None, labels=True, **kwargs):
 
-    v = vs[:,:,0]
+    if vs.ndim != 2:
+        if s is None:
+            raise ValueError('must specify snapshot number for movie')
+        v = vs[s,:,:]
+    else:
+        v = vs
     
     if f is None:
         f = lambda x: x
 
     if ax is None:
         fig, ax = plt.subplots(1, 1)
-
-    ax.imshow(f(v.T), origin='lower', extent=vs.extent, **kwargs)
+    
+    ax.imshow(f(v.value.T), origin='lower', extent=vs.extent, **kwargs)
 
     if labels:
         labels = vs.extent_labels
@@ -164,7 +169,8 @@ def grid(pf, plot,
                 axes[j][i].set_yticklabels([])
 
             if i == len(cols)-1 and ytitle is not None:
-                ax_r = axes[j][i].twinx()
+                ax_r = axes[j][i] #ax_r = axes[j][i].twinx()
+                ax_r.yaxis.set_label_position("right")
                 if rowmap is not None:
                     ax_r.set_ylabel(ytitle.format(rowmap[r]))
                 else:
@@ -172,7 +178,7 @@ def grid(pf, plot,
                 #ax_r.tick_params(axis='both',
                 #                 direction='in',
                 #                 labelright=False)
-                ax_r.yaxis.set_ticks([])
+                #ax_r.yaxis.set_ticks([])
                 #ax_r.tick_params(color='w')
                 #for spine in ax_r.spines.values():
                 #    spine.set_edgecolor('w')
@@ -197,10 +203,10 @@ def grid(pf, plot,
         axes[0][-1].legend(loc=legend)
 
     fig.suptitle(title)
-    fig.tight_layout()
+    #fig.tight_layout()
     fig.subplots_adjust(wspace=xspace, hspace=yspace)
     if fout:
         fig.savefig(fout+'.pdf')
-        fig.savefig(fout+'.png', dpi=300)
+        #fig.savefig(fout+'.png', dpi=300)
 
     return fig
