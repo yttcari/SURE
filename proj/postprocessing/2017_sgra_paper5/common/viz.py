@@ -27,7 +27,7 @@ def show(vs, s=None, f=None, ax=None, labels=True, **kwargs):
     if vs.ndim != 2:
         if s is None:
             raise ValueError('must specify snapshot number for movie')
-        v = vs[s,:,:]
+        v = vs[:,:,s]
     else:
         v = vs
     
