@@ -31,6 +31,7 @@ from yaml    import safe_load
 from common import hallmark as hm
 from common import analyses as mm
 import pdb
+from common.shadow import *
 
 def cache_summ(src_fmt, dst_fmt, img_fmt='ipole',
                params=None, order=['snapshot'], **kwargs):
@@ -100,7 +101,15 @@ def cache_summ(src_fmt, dst_fmt, img_fmt='ipole',
             moments = mm.moments(img.value, *img.fov.value, FWHM=True)
             unresolvedPolarizationFractions = mm.unresolvedFractionalPolarizations(img)
             resolvedPolarizationFractions = mm.resolvedFractionalPolarizations(img)
-            beta2Coefficient = mm.computeBetaCoefficient(img)
+
+            # Calculate Beta Coefficient
+            print(sel)
+            x, y = shadow(sel.aspin, sel.inc*np.pi/180)
+            x, y = np.ma.masked_array(x, np.isnan(y)), np.ma.masked_array(y, np.isnan(y))
+            cx, cy = np.average(x), np.average(y)
+            r = np.max(x-cx) 
+            beta2Coefficient = mm.computeBetaCoefficient(img, r_max=r, cx=cx, cy=cy)
+
             opticalDepth = mm.computeOpticalDepth(img)
             faradayDepth = mm.computeFaradayDepth(img)
             time    = img.meta.time.value

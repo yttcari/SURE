@@ -18,6 +18,7 @@
 
 import numpy as np
 from .convolveSquareImage import *
+from shadow import *
 
 def moments(img, width, height, FWHM=False):
     """Compute image moments"""
@@ -91,7 +92,7 @@ def resolvedFractionalPolarizations(img, blurring_fwhm_muas=20.0):
     resolvedLinear = np.sqrt(blurredStokesImages[1]**2 + blurredStokesImages[2]**2)
     return np.nanmean(resolvedLinear/blurredStokesImages[0]), np.nanmean(blurredStokesImages[3]/blurredStokesImages[0])
 
-def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, norm_with_StokesI=True):
+def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, norm_with_StokesI=True, spin=None, inc=None):
     """
     Compute the amplitude and phase of the complex beta coefficient of linear polarization described in Palumbo, Wong, and Prather 2020.  Code based on pmodes.py by Daniel Palumbo.
     """
@@ -100,17 +101,22 @@ def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, n
         #Return nan if there is no polarization data, which we check by just looking at the number of 2d arrays
         return np.nan, np.nan
 
+    # Calculate the shadow size and position if spin and inclination are given
+    if (spin != None) and (inc != None):
+        x, y = shadow(spin, inc*np.pi/180)
+        x, y = np.ma.mask
+
     assert np.isclose(np.abs(img.fov.value[0]), np.abs(img.fov.value[1]))
     fov_muas = np.abs(img.fov.value[0])
-    iarr = np.flip(np.transpose(img.value[:,:,0], (1,0)), axis=0)
-    qarr = np.flip(np.transpose(img.value[:,:,1], (1,0)), axis=0)
-    uarr = np.flip(np.transpose(img.value[:,:,2], (1,0)), axis=0)
+    iarr = np.flip(np.transpose(img.value[:,:,0], (1,0)), axis=0) # I 
+    qarr = np.flip(np.transpose(img.value[:,:,1], (1,0)), axis=0) # Q
+    uarr = np.flip(np.transpose(img.value[:,:,2], (1,0)), axis=0) # U
     assert iarr.shape[0] == iarr.shape[1]
-    npix = iarr.shape[0]
+    npix = iarr.shape[0] # No. of pixels of the image
 
-    parr = qarr + 1j*uarr
+    parr = qarr + 1j*uarr # Complex P = Q + iU
     normparr = np.abs(parr)
-    marr = parr/iarr
+    marr = parr/iarr # Linear Polarization Fraction
     phatarr = parr/normparr
     area = (r_max*r_max - r_min*r_min) * np.pi
     pxi = (np.arange(npix)-0.01)/npix-0.5
@@ -118,7 +124,7 @@ def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, n
     mui = pxi*fov_muas
     muj = pxj*fov_muas
     MUI,MUJ = np.meshgrid(mui,muj)
-    MUDISTS = np.sqrt(np.power(MUI,2.)+np.power(MUJ,2.))
+    MUDISTS = np.sqrt(np.power(MUI-cx,2.)+np.power(MUJ-cy,2.))
 
     # get angles measured East of North
     PXI,PXJ = np.meshgrid(pxi,pxj)
@@ -159,7 +165,7 @@ def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, n
         else:
             coeff /= pf
 
-    return np.abs(coeff), np.angle(coeff) * 180.0 / np.pi
+    return np.abs(coeff), (np.angle(coeff, deg=True) % 180)
 
 def computeOpticalDepth(img):
     """Intensity-weighted average optical depth"""
