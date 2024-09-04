@@ -5,6 +5,7 @@ It is then used to test for the Sgr A* constraints and predict the images of ngE
 # Reference
 This project uses modified libraries, including:
 - [ipole](https://github.com/AFD-Illinois/ipole/tree/master)
+- [pyharm](https://github.com/AFD-Illinois/pyharm/tree/master)
 - [2017_sgra_paper5](https://github.com/eventhorizontelescope/2017_sgra_paper5/tree/main)
 - [fadge](https://github.com/adxsrc/fadge/tree/main)
 - [EHTGRMHDCal](https://github.com/ptiede/EHTGRMHDCal/tree/main)
