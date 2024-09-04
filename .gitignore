@@ -1,8 +1,8 @@
-dump
-*.h5
-*.png
-*.out
-ext/venv
-*.tsv
-*.pdf
-*.mp4
+*
+
+*.md
+*.py
+*.ipynb
+*.c
+*.h
+*.jl
