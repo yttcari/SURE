@@ -1,8 +1,0 @@
-src_fmt:
-  /Users/caritsang/desktop/project/2024SURE/dump/{NGC}_{aspin}_{freq}_{inc}/{snapshot}.h5
-dst_fmt:
-  cache/SPO2023/avg/{NGC}_{aspin}_{inc}_{freq}.h5
-img_fmt:
-  ipole
-order:
-  - snapshot

@@ -1,4 +1,0 @@
-src_fmt:
-  cache/SPO2023/summ/{NGC}_a{aspin}_i{inc}_{freq}.tsv
-dst_fmt:
-  cache/SPO2023/corr/{NGC}_a{aspin}_i{inc}_{freq}.tsv
