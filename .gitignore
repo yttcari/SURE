@@ -1,8 +1,8 @@
 *
 
-*.md
-*.py
-*.ipynb
-*.c
-*.h
-*.jl
+!*.md
+!*.py
+!*.ipynb
+!*.c
+!*.h
+!*.jl
