@@ -124,7 +124,7 @@ def computeBetaCoefficient(img, m=2, r_min=0, r_max=np.inf, norm_in_int=False, n
     mui = pxi*fov_muas
     muj = pxj*fov_muas
     MUI,MUJ = np.meshgrid(mui,muj)
-    MUDISTS = np.sqrt(np.power(MUI-cx,2.)+np.power(MUJ-cy,2.))
+    MUDISTS = np.sqrt(np.power(MUI,2.)+np.power(MUJ,2.))
 
     # get angles measured East of North
     PXI,PXJ = np.meshgrid(pxi,pxj)
